@@ -40,13 +40,13 @@ public class Controller {
     }
 
     @RequestMapping("/staff/inventory_get")
-    public String queryAmount(@RequestParam(value="shelf") String shelf,@RequestParam(value="position") int position){
-        return gson.toJson(staffService.queryAmount(shelf,position));
+    public String assignInventoryTask(){
+        return gson.toJson(staffService.assignInventoryTask());
     }
 
     @RequestMapping("/staff/inventory_set")
-    public void updateAmount(@RequestParam(value="id") String id,@RequestParam(value="amount") int amount){
-        staffService.updateAmount(id,amount);
+    public void InventoryResultUpdate(@RequestParam(value="id") String id,@RequestParam(value="amount") int amount){
+        staffService.inventoryResultUpdate(id,amount);
     }
 
 }

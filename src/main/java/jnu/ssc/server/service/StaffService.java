@@ -1,18 +1,11 @@
 package jnu.ssc.server.service;
 
-import jnu.ssc.server.WarehouseManagementSystemApplication;
 import jnu.ssc.server.dao.ClothesMapper;
-import jnu.ssc.server.dao.OrderInfoMapper;
 import jnu.ssc.server.domain.Clothes;
-import jnu.ssc.server.domain.OrderInfo;
+import jnu.ssc.server.inventory.InventoryManager;
+import jnu.ssc.server.pick.Pick;
 import jnu.ssc.server.pick.PickManager;
-import jnu.ssc.server.pick.PickStrategy;
-import jnu.ssc.server.pick.PickStrategyAll;
-import org.apache.catalina.mbeans.MBeanFactory;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,7 +31,7 @@ public class StaffService {
         this.pickManager=pickManager;
     }
 
-    public List<OrderInfo> assignPickTask(){
+    public Pick[] assignPickTask(){
         return pickManager.assignPickTask();
     }
 
@@ -47,11 +40,16 @@ public class StaffService {
     }
 
     //库存盘点
-    public Clothes queryAmount(String shelf, int position){
-        return clothesMapper.getClothesByPosition(shelf,position);
+    private InventoryManager inventoryManager;
+    @Autowired
+    public void setInventoryManager(InventoryManager inventoryManager){
+        this.inventoryManager=inventoryManager;
+    }
+    public Clothes[] assignInventoryTask(){
+        return inventoryManager.assignInventoryTask();
     }
 
-    public void updateAmount(String id, int amount){
+    public void inventoryResultUpdate(String id, int amount){
         clothesMapper.updateAmountById(id,amount);
     }
 

@@ -15,4 +15,8 @@
         <constructor-arg ref="pickStrategyAll"/>
     </bean>
 
+    <bean id="inventoryManager" class="jnu.ssc.server.inventory.InventoryManager">
+        <constructor-arg ref="inventoryStrategyAll"/>
+    </bean>
+
 </beans>

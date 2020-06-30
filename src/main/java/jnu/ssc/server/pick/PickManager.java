@@ -13,7 +13,7 @@ public class PickManager {
     }
 
     //分配拣货任务（获取拣货列表）
-    public List<OrderInfo> assignPickTask(){
+    public Pick[] assignPickTask(){
         return pickStrategy.getPickList();
     }
 
