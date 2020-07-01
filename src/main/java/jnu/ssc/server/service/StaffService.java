@@ -45,6 +45,7 @@ public class StaffService {
     public void setInventoryManager(InventoryManager inventoryManager){
         this.inventoryManager=inventoryManager;
     }
+
     public Clothes[] assignInventoryTask(){
         return inventoryManager.assignInventoryTask();
     }

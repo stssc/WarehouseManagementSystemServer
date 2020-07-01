@@ -39,12 +39,12 @@ public class Controller {
         staffService.pickOver(orderId,clothesId);
     }
 
-    @RequestMapping("/staff/inventory_get")
+    @RequestMapping("/staff/inventory_task")
     public String assignInventoryTask(){
         return gson.toJson(staffService.assignInventoryTask());
     }
 
-    @RequestMapping("/staff/inventory_set")
+    @RequestMapping("/staff/inventory_errata")
     public void InventoryResultUpdate(@RequestParam(value="id") String id,@RequestParam(value="amount") int amount){
         staffService.inventoryResultUpdate(id,amount);
     }

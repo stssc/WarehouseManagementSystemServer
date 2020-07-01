@@ -2,11 +2,8 @@ package jnu.ssc.server.pick;
 
 import jnu.ssc.server.dao.OrderInfoMapper;
 import jnu.ssc.server.dao.PickMapper;
-import jnu.ssc.server.domain.OrderInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class PickStrategyAll implements PickStrategy {//拣货任务分配策略：所有人都能拣所有货，多人同时拣货时采取线程同步措施
@@ -25,7 +22,7 @@ public class PickStrategyAll implements PickStrategy {//拣货任务分配策略
 
     @Override
     public Pick[] getPickList() {
-        return pickMapper.getOrderInfoListOrderByPosition();
+        return pickMapper.getOrderInfoListOrderByPositionGroupByOrder();
     }
 
     @Override
