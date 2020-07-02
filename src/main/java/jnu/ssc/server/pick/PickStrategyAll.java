@@ -21,7 +21,7 @@ public class PickStrategyAll implements PickStrategy {//拣货任务分配策略
     }
 
     @Override
-    public Pick[] getPickList() {
+    public Pick[] gotPickList() {
         return pickMapper.getOrderInfoListOrderByPositionGroupByOrder();
     }
 
