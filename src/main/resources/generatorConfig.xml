@@ -23,7 +23,11 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="clothes" domainObjectName="Clothes"/>
-        <table tableName="order_info" domainObjectName="OrderInfo"/>
+<!--        <table tableName="clothes" domainObjectName="Clothes"/>-->
+<!--        <table tableName="order_info" domainObjectName="OrderInfo"/>-->
+<!--        <table tableName="space" domainObjectName="Space"/>-->
+<!--        <table tableName="staff" domainObjectName="Staff"/>-->
+<!--        <table tableName="administrator" domainObjectName="Administrator"/>-->
+        <table tableName="inventory_task" domainObjectName="InventoryTask"/>
     </context>
 </generatorConfiguration>

@@ -1,8 +1,5 @@
 package jnu.ssc.server.pick;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public interface PickStrategy {
 
     //分配拣货任务（获取拣货列表）

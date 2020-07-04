@@ -1,11 +1,11 @@
-package jnu.ssc.server.inventory;
+package jnu.ssc.server.inventory_staff;
 
 import jnu.ssc.server.dao.ClothesMapper;
 import jnu.ssc.server.domain.Clothes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class InventoryStrategyAll implements InventoryStrategy {
     private ClothesMapper clothesMapper;
     @Autowired
@@ -14,7 +14,7 @@ public class InventoryStrategyAll implements InventoryStrategy {
     }
 
     @Override
-    public Clothes[] getInventoryList() {
+    public Clothes[] getInventoryList(String staffId) {
         return clothesMapper.getAllClothes();
     }
 

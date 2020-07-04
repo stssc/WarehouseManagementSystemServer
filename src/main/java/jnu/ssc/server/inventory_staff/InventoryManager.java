@@ -1,4 +1,4 @@
-package jnu.ssc.server.inventory;
+package jnu.ssc.server.inventory_staff;
 
 import jnu.ssc.server.domain.Clothes;
 import org.springframework.stereotype.Component;
@@ -11,9 +11,9 @@ public class InventoryManager {
         this.inventoryStrategy=inventoryStrategy;
     }
 
-    //分配盘点任务（获取库存信息列表）
-    public Clothes[] assignInventoryTask(){
-        return inventoryStrategy.getInventoryList();
+    //获取盘点任务
+    public Clothes[] assignInventoryTask(String staffId){
+        return inventoryStrategy.getInventoryList(staffId);
     }
 
     //根据盘点结果更新数据库

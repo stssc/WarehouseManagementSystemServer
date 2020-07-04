@@ -11,12 +11,28 @@
 
     <context:component-scan base-package="jnu.ssc.server"/>
 
+<!--课程设计需求-->
+<!--    <bean id="pickManager" class="jnu.ssc.server.pick.PickManager">-->
+<!--        <constructor-arg ref="pickStrategyAll"/>-->
+<!--    </bean>-->
+
+<!--实验报告需求-->
     <bean id="pickManager" class="jnu.ssc.server.pick.PickManager">
-        <constructor-arg ref="pickStrategyAll"/>
+        <constructor-arg ref="pickStrategyPart"/>
     </bean>
 
-    <bean id="inventoryManager" class="jnu.ssc.server.inventory.InventoryManager">
-        <constructor-arg ref="inventoryStrategyAll"/>
+<!--课程设计需求-->
+<!--    <bean id="inventoryManager" class="jnu.ssc.server.inventory_staff.InventoryManager">-->
+<!--        <constructor-arg ref="inventoryStrategyPart"/>-->
+<!--    </bean>-->
+
+<!--实验报告需求-->
+    <bean id="inventoryManager" class="jnu.ssc.server.inventory_staff.InventoryManager">
+        <constructor-arg ref="inventoryStrategyPart"/>
+    </bean>
+
+    <bean id="inventoryTaskAssignManager" class="jnu.ssc.server.inventory_administrator.InventoryTaskAssignManager">
+        <constructor-arg ref="inventoryTaskAssignStrategyEqually"/>
     </bean>
 
 </beans>

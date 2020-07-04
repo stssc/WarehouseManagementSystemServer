@@ -1,10 +1,7 @@
 package jnu.ssc.server.dao;
 
 import jnu.ssc.server.domain.Clothes;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface ClothesMapper {
@@ -17,5 +14,11 @@ public interface ClothesMapper {
 
     @Update("update clothes set amount=#{amount} where id=#{id}")
     void updateAmountById(@Param("id") String id,@Param("amount") int amount);
+
+    @Insert("insert into clothes values(#{id},#{shelf},#{position},#{amount})")
+    void insertClothes(@Param("id") String id,@Param("shelf") String shelf,@Param("position") int position,@Param("amount") int amount);
+
+    @Select("select sum(amount) from clothes")
+    int getAmountSum();
 
 }
