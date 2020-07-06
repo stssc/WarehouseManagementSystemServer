@@ -11,8 +11,8 @@ public class InventoryManager {
     }
 
     //获取盘点任务
-    public InventoryTaskDetail[] getInventoryTask(String staffId){
-        return inventoryStrategy.getInventoryList(staffId);
+    public InventoryTaskDetail[] gotInventoryTask(String staffId){
+        return inventoryStrategy.gotInventoryList(staffId);
     }
 
     //根据盘点结果更新数据库

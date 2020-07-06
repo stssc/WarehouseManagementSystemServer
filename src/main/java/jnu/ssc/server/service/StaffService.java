@@ -3,7 +3,6 @@ package jnu.ssc.server.service;
 import jnu.ssc.server.back.Back;
 import jnu.ssc.server.dao.*;
 import jnu.ssc.server.domain.Clothes;
-import jnu.ssc.server.domain.InventoryTask;
 import jnu.ssc.server.domain.Space;
 import jnu.ssc.server.inventory_staff.InventoryManager;
 import jnu.ssc.server.inventory_staff.InventoryTaskDetail;
@@ -60,7 +59,7 @@ public class StaffService {
     }
 
     public InventoryTaskDetail[] queryInventoryTask(String staffId){
-        return inventoryManager.getInventoryTask(staffId);
+        return inventoryManager.gotInventoryTask(staffId);
     }
 
     public void inventoryOver(String staffId,String shelf,int position){

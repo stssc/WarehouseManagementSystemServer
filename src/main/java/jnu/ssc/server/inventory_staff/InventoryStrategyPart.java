@@ -23,7 +23,7 @@ public class InventoryStrategyPart implements InventoryStrategy {
     }
 
     @Override
-    public InventoryTaskDetail[] getInventoryList(String staffId) {
+    public InventoryTaskDetail[] gotInventoryList(String staffId) {
         return inventoryTaskMapper.getInventoryClothes(staffId);
     }
 

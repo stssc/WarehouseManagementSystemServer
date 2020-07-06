@@ -27,7 +27,7 @@ public class PickStrategyPart implements PickStrategy {//拣货任务分配策�
     @Override
     public Pick[] gotPickList() {
         Pick[] picks=pickMapper.getOrderInfoListOrderByPositionGroupByOrder();
-        List<Pick> pickList=new ArrayList<Pick>();
+        List<Pick> pickList=new ArrayList<>();
         int sku=0;
         for (Pick pick:picks){
             if (sku+pick.getAmount()>MAX_SKU)
