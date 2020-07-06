@@ -38,6 +38,12 @@ public class Controller {
     工作人员服务区
      */
 
+    //登录
+    @RequestMapping("/staff/login")
+    public boolean staffLogin(@RequestParam(value="id") String id,@RequestParam(value="password") String password){
+        return staffService.staffLogin(id,password);
+    }
+
     //库存查询
     @RequestMapping("/staff/query")
     public String queryClothesInfo(@RequestParam(value="id") String id){
@@ -102,6 +108,12 @@ public class Controller {
     管理人员服务区
      */
 
+    //登录
+    @RequestMapping("/administrator/login")
+    public boolean administratorLogin(@RequestParam(value="id") String id,@RequestParam(value="password") String password){
+        return administratorService.administratorLogin(id,password);
+    }
+
     //盘点管理-查询职工信息
     @RequestMapping("/administrator/query_staff")
     public String queryStaff(@RequestParam(value="id") String id){
@@ -110,16 +122,27 @@ public class Controller {
 
     //盘点管理-分配盘点任务
     @RequestMapping("/administrator/inventory_assign")
-    public void queryInventoryTask(@RequestParam(value="staffs") String staffsStr, @RequestParam("ddl") String ddlStr){
+    public void assignInventoryTask(@RequestParam(value="staffs") String staffsStr){
         Staff[] staffs=gson.fromJson(staffsStr,Staff[].class);
-        Date ddl=gson.fromJson(ddlStr,Date.class);
-        administratorService.assignInventoryTask(staffs,ddl);
+        administratorService.assignInventoryTask(staffs);
+    }
+
+    //盘点管理-查看已分配盘点任务的员工
+    @RequestMapping("/administrator/inventory_staff")
+    public String queryInventoryStaff(){
+        return gson.toJson(administratorService.queryInventoryStaff());
     }
 
     //盘点管理-查看盘点任务摘要
-    @RequestMapping("/administrator/inventory_query")
+    @RequestMapping("/administrator/inventory_summary")
     public String queryInventoryTaskSummary(@RequestParam(value="staffId") String staffId){
         return gson.toJson(administratorService.queryInventoryTaskSummary(staffId));
+    }
+
+    //盘点管理-查看预计盘点数量
+    @RequestMapping("/administrator/inventory_amount")
+    public int queryInventoryAmount(@RequestParam(value="staffId") String staffId){
+        return administratorService.queryInventoryAmount(staffId);
     }
 
     //盘点管理-查看盘点进度

@@ -14,12 +14,22 @@ public class InventoryStrategyAll implements InventoryStrategy {
     }
 
     @Override
-    public Clothes[] getInventoryList(String staffId) {
-        return clothesMapper.getAllClothes();
+    public InventoryTaskDetail[] getInventoryList(String staffId) {
+        Clothes[] inventoryClothes=clothesMapper.getAllClothes();
+        InventoryTaskDetail[] inventoryList=new InventoryTaskDetail[inventoryClothes.length];
+        for (int i=0;i<inventoryClothes.length;i++){
+            inventoryList[i]=new InventoryTaskDetail(inventoryClothes[i]);
+        }
+        return inventoryList;
     }
 
     @Override
     public void inventoryUpdate(String clothesId, int amount) {
         clothesMapper.updateAmountById(clothesId,amount);
+    }
+
+    @Override
+    public void inventoryOver(String staffId, String shelf, int position) {
+
     }
 }

@@ -5,8 +5,10 @@ import jnu.ssc.server.domain.Clothes;
 public interface InventoryStrategy {
 
     //分配盘点任务
-    Clothes[] getInventoryList(String staffId);
+    InventoryTaskDetail[] getInventoryList(String staffId);
     //根据盘点结果更新数据库
     void inventoryUpdate(String clothesId,int amount);
+    //盘点完成
+    void inventoryOver(String staffId,String shelf,int position);
 
 }

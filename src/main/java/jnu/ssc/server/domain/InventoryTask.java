@@ -11,8 +11,6 @@ public class InventoryTask {
 
     private Integer position;
 
-    private Date ddl;
-
     private Integer state;
 
     public Integer getId() {
@@ -45,14 +43,6 @@ public class InventoryTask {
 
     public void setPosition(Integer position) {
         this.position = position;
-    }
-
-    public Date getDdl() {
-        return ddl;
-    }
-
-    public void setDdl(Date ddl) {
-        this.ddl = ddl;
     }
 
     public Integer getState() {

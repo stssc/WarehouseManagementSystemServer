@@ -12,6 +12,9 @@ public interface ClothesMapper {
     @Select("select * from clothes")
     Clothes[] getAllClothes();
 
+    @Select("select * from clothes order by shelf,position")
+    Clothes[] getAllClothesOrderByPosition();
+
     @Update("update clothes set amount=#{amount} where id=#{id}")
     void updateAmountById(@Param("id") String id,@Param("amount") int amount);
 

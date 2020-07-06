@@ -1,5 +1,6 @@
 package jnu.ssc.server.service;
 
+import jnu.ssc.server.dao.AdministratorMapper;
 import jnu.ssc.server.dao.InventoryTaskMapper;
 import jnu.ssc.server.dao.StaffMapper;
 import jnu.ssc.server.domain.InventoryTask;
@@ -8,10 +9,19 @@ import jnu.ssc.server.inventory_administrator.InventoryTaskAssignManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-
 @Service
 public class AdministratorService {
+
+    //登录
+    private AdministratorMapper administratorMapper;
+    @Autowired
+    public void setAdministratorMapper(AdministratorMapper administratorMapper){
+        this.administratorMapper=administratorMapper;
+    }
+
+    public boolean administratorLogin(String id,String password){
+        return administratorMapper.getAdministrator(id,password)!=null;
+    }
 
     //分配盘点任务
     private StaffMapper staffMapper;
@@ -30,8 +40,8 @@ public class AdministratorService {
         return staffMapper.getStaffById(id);
     }
 
-    public void assignInventoryTask(Staff[] staffs, Date ddl){
-        inventoryTaskAssignManager.assignInventoryTask(staffs,ddl);
+    public void assignInventoryTask(Staff[] staffs){
+        inventoryTaskAssignManager.assignInventoryTask(staffs);
     }
 
     //查看盘点进度
@@ -41,8 +51,16 @@ public class AdministratorService {
         this.inventoryTaskMapper=inventoryTaskMapper;
     }
 
+    public String[] queryInventoryStaff(){
+        return inventoryTaskMapper.getInventoryStaffId();
+    }
+
     public InventoryTask[] queryInventoryTaskSummary(String staffId){
         return inventoryTaskMapper.queryHeadAndTailOfInventoryTask(staffId);
+    }
+
+    public int queryInventoryAmount(String staffId){
+        return inventoryTaskMapper.getStaffInventoryAmount(staffId);
     }
 
     public double queryInventoryRate(String staffId){

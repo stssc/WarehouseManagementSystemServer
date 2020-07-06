@@ -1,13 +1,12 @@
 package jnu.ssc.server.service;
 
 import jnu.ssc.server.back.Back;
-import jnu.ssc.server.dao.BackMapper;
-import jnu.ssc.server.dao.ClothesMapper;
-import jnu.ssc.server.dao.InventoryTaskMapper;
-import jnu.ssc.server.dao.SpaceMapper;
+import jnu.ssc.server.dao.*;
 import jnu.ssc.server.domain.Clothes;
+import jnu.ssc.server.domain.InventoryTask;
 import jnu.ssc.server.domain.Space;
 import jnu.ssc.server.inventory_staff.InventoryManager;
+import jnu.ssc.server.inventory_staff.InventoryTaskDetail;
 import jnu.ssc.server.pick.Pick;
 import jnu.ssc.server.pick.PickManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StaffService {
+
+    //登录
+    private StaffMapper staffMapper;
+    @Autowired
+    public void setStaffMapper(StaffMapper staffMapper){
+        this.staffMapper=staffMapper;
+    }
+
+    public boolean staffLogin(String id,String password){
+        return staffMapper.getStaff(id, password) != null;
+    }
 
     //库存查询
     private ClothesMapper clothesMapper;
@@ -49,22 +59,16 @@ public class StaffService {
         this.inventoryManager=inventoryManager;
     }
 
-    private InventoryTaskMapper inventoryTaskMapper;
-    @Autowired
-    public void setInventoryTaskMapper(InventoryTaskMapper inventoryTaskMapper){
-        this.inventoryTaskMapper=inventoryTaskMapper;
-    }
-
-    public Clothes[] queryInventoryTask(String staffId){
-        return inventoryManager.assignInventoryTask(staffId);
+    public InventoryTaskDetail[] queryInventoryTask(String staffId){
+        return inventoryManager.getInventoryTask(staffId);
     }
 
     public void inventoryOver(String staffId,String shelf,int position){
-        inventoryTaskMapper.setInventoryOver(staffId,shelf,position);
+        inventoryManager.inventoryOver(staffId,shelf,position);
     }
 
     public void inventoryResultUpdate(String id, int amount){
-        clothesMapper.updateAmountById(id,amount);
+        inventoryManager.inventoryResultUpdate(id,amount);
     }
 
     //商品入库

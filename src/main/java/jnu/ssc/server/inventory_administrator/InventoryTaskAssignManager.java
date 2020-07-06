@@ -13,8 +13,8 @@ public class InventoryTaskAssignManager {
         this.inventoryTaskAssignStrategy=inventoryTaskAssignStrategy;
     }
 
-    public void assignInventoryTask(Staff[] staffs, Date ddl){
-        inventoryTaskAssignStrategy.assignInventoryTask(staffs,ddl);
+    public void assignInventoryTask(Staff[] staffs){
+        inventoryTaskAssignStrategy.assignInventoryTask(staffs);
     }
 
 }

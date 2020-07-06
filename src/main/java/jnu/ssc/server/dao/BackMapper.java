@@ -12,7 +12,7 @@ public interface BackMapper {
     @Select("select order_id,clothes_id,back_amount,shelf,position from order_info,clothes where order_id=#{orderId} and clothes_id=#{clothesId} and clothes_id=clothes.id")
     Back getBackInfoById(@Param("orderId") String orderId,@Param("clothesId") String clothesId);
 
-    @Update("update order_info set back_amount=0 where order_id=#{orderId} and clothes_id=#{clothesId}")
+    @Update("update order_info set back=0,back_amount=0 where order_id=#{orderId} and clothes_id=#{clothesId}")
     void setBackOver(@Param("orderId") String orderId,@Param("clothesId") String clothesId);
 
 }
